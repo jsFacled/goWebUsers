@@ -15,6 +15,9 @@ una estructura service para implementar esta interfaz, un constructor para crear
  todo mientras registra eventos importantes usando un logger.
  
 */
+
+
+//Se define la estructura Service con su interfaz
 type (
 	Service interface {
 		Create(ctx context.Context, firstName, lastName, email string) (*domain.User, error)
@@ -26,12 +29,16 @@ type (
 	}
 )
 
+//Se define Constructor para instanciar Service
 func NewService(l *log.Logger, repo Repository) Service {
 	return &service{
 		log:  l,
 		repo: repo,
 	}
 }
+
+
+// 	--- Métodos para interactuar con Repository ---
 
 //No usa asterisco* en service porque no lo modificará
 func (s service) Create(ctx context.Context, firstName, lastName, email string) (*domain.User, error) {
