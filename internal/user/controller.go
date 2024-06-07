@@ -4,6 +4,7 @@ package user
 Video:
 - Hasta el minuto 8 se define el mètodo GetAllUser
 - 8´: metodo Post.
+- 12: cmd/main
 
 
 */
@@ -103,4 +104,10 @@ func DataResponse(w http.ResponseWriter, status int, users interface{}) {
 	w.WriteHeader(status)
 	fmt.Fprintf(w, `{"status": %d, "data": %s}`, status, value) // En el campo data, el valor %s va sin comillas para que tome el json.
 
+}
+
+func InvalidMethod(w http.ResponseWriter){
+	status := http.StatusNotFound
+	w.WriteHeader(status)
+	fmt.Fprintf(w, `{"status": %d, "message": "metohod doesn´t exist}`, status)
 }
